@@ -1,5 +1,5 @@
 FROM cloudbees/jnlp-slave-with-java-build-tools
-MAINTAINER garmond.omalejr@asurion.com
+MAINTAINER ariel.chiong@gmail.com
 
 # Switch to root for installation
 USER root
