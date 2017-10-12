@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1505453426000",
+            "Effect": "Allow",
+            "Action": [
+                "sts:AssumeRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::141322309595:role/console1-jenkins02-iam-crossaccount-dev",
+                "arn:aws:iam::330932647836:role/console1-jenkins02-iam-crossaccount-dev",
+                "arn:aws:iam::678628912247:role/console1-jenkins02-iam-crossaccount-dev"
+            ]
+        }
+    ]
+}

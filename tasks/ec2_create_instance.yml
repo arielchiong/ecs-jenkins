@@ -1,0 +1,49 @@
+# SYNTAX: ansible-playbook tasks/ec2_create_instance.yml -e "@env_vars/poc/apne1.json"
+
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+
+  - name: Lookup current Amazon Linux image
+    ec2_ami_find:
+      name: "{{ aws_linux_image }}"
+      owner: "{{ aws_linux_owner }}"
+      region: "{{ aws_region }}"
+      sort: "{{ aws_sort }}"
+      sort_order: "{{ aws_sort_order }}"
+      sort_end: "{{ aws_sort_end }}"
+      profile: "{{ aws_profile }}"
+    register: aws_linux_image_result
+  - debug: msg="{{ aws_linux_image_result }}"
+
+  - name: Launch an instance, yum update, and install SSM+Inspector agents
+    ec2:
+      group: "{{ aws_security_group }}"
+      image: "{{ aws_linux_image_result.results[0].ami_id }}"
+      instance_profile_name: "{{ aws_iam_role }}"
+      instance_type: "{{ aws_instance_type }}"
+      key_name: "{{ aws_key_pair }}"
+      profile: "{{ aws_profile }}"
+      region: "{{ aws_region }}"
+      instance_tags:
+        Name: "{{ tagName }}-{{ tagEnvironment }}"
+        BUSINESS_UNIT: "{{ tagBusinessUnit }}"
+        BUSINESS_REGION: "{{ tagBusinessRegion }}"
+        CLIENT: "{{ tagClient }}"
+        PLATFORM: "{{ tagPlatform }}"
+        ENVIRONMENT: "{{ tagEnvironment }}"
+        SCHEDULER:SLEEP: "{{ tagSchedulerSleep }}"
+        TARGET: "{{ tagTarget }}"
+      user_data: |
+        #!/bin/bash
+        echo ------------------------- Installing SSM Agent -------------------------
+        cd /tmp
+        sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+        echo ------------------------- Installing Inspector Agent -------------------------
+        wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install
+        sudo bash install
+      vpc_subnet_id: "{{ aws_subnet_id }}"
+    register: ec2_details_cmd_out
+  - debug: msg="{{ ec2_details_cmd_out.instances[0].id }}"

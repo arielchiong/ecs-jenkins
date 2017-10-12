@@ -1,0 +1,22 @@
+# SYNTAX: ansible-playbook tasks/ec2_tag_instance.yml -e "@env_vars/poc/apne1.json"
+
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+
+  - name: Tag an existing instance
+    ec2_tag:
+      region: "{{ aws_region }}"
+      resource: "{{ aws_resource }}"
+      # profile: "{{ aws_profile }}"
+      tags:
+        Name: "{{ tagName }}-{{ tagEnvironment }}"
+        BUSINESS_UNIT: "{{ tagBusinessUnit }}"
+        BUSINESS_REGION: "{{ tagBusinessRegion }}"
+        CLIENT: "{{ tagClient }}"
+        PLATFORM: "{{ tagPlatform }}"
+        ENVIRONMENT: "{{ tagEnvironment }}"
+        SCHEDULER:SLEEP: "ALTERNATIVE"
+        TARGET: "{{ tagTarget }}"

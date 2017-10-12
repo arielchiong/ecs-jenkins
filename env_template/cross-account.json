@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1505453426000",
+            "Effect": "Allow",
+            "Action": [
+                "sts:AssumeRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::{{ aws_account2 }}:role/{{ aws_project }}-{{ aws_application }}-iam-crossaccount-dev",
+                "arn:aws:iam::{{ aws_account3 }}:role/{{ aws_project }}-{{ aws_application }}-iam-crossaccount-dev",
+                "arn:aws:iam::{{ aws_account4 }}:role/{{ aws_project }}-{{ aws_application }}-iam-crossaccount-dev"
+            ]
+        }
+    ]
+}
