@@ -36,7 +36,7 @@
   "aws_linux_owner": "137112412989",
   "aws_key_pair": "ariel.chiong",
   "aws_owner": "amazon",
-  "aws_profile": "asurion-dev.appadmins",
+  "aws_profile": "default",
   "aws_profile2": "asurion-poc.appadmins",
   "aws_profile3": "asurion-sqa.appadmins",
   "aws_profile4": "asurion-prod.appadmins",
