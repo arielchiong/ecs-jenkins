@@ -7,6 +7,7 @@
   - name: 02.1 -- Create EC2 Elastic Load Balancer in {{ aws_env|upper }}
     ec2_elb_lb:
       name: "{{ aws_project }}-{{ aws_application }}-ec2-elb-{{ aws_env_int }}"
+      idle_timeout: 600
       health_check:
           ping_protocol: tcp
           ping_port: 22
