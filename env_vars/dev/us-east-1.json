@@ -52,7 +52,7 @@
   "aws_subnet_id1_int": "subnet-1d0f1847",
   "aws_subnet_id2_int": "subnet-6f081f35",
   "aws_subnet_id3_int": "subnet-fb3e2cd7",
-  "aws_vpc": "vpc-152b3970",
+  "aws_vpc": "vpc-b10ccfc9",
   "aws_ecs_cluster_name": "test-cluster",
   "aws_host_name": "MYTESTSERVER",
   "tagName": "MYTESTSERVER",
