@@ -49,7 +49,7 @@
   "aws_sort_order": "descending",
   "aws_source": "",
   "aws_spot_price": "0.2",
-  "aws_subnet_id1_int": "subnet-1d0f1847",
+  "aws_subnet_id1_int": "subnet-6f081f35",
   "aws_subnet_id2_int": "subnet-781b9c1c",
   "aws_subnet_id3_int": "subnet-fb3e2cd7",
   "aws_vpc": "vpc-b10ccfc9",
